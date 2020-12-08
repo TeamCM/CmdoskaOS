@@ -1,3 +1,5 @@
 bootloader/boot.o
 kernel/kernel.o
 Cmdoska*
+.vscode
+BoneOS/

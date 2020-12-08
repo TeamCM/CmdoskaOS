@@ -11,8 +11,9 @@ OUTPUT = Cmdoska.iso
 all: compile link build_iso clean
 
 compile:
-	as --32 $(BOOT_S) -o $(BOOT_O)
+	# We compile first the kernel to compile and not let the boot.o in bootloader folder if kernel compiles fails
 	gcc -m32 -c $(KERNEL_C) -o $(KERNEL_O) -std=gnu99 -ffreestanding -O2 -Wall -Wextra
+	as --32 $(BOOT_S) -o $(BOOT_O)
 
 link:
 	ld -m elf_i386 -T linker.ld $(KERNEL_O) $(BOOT_O) -o $(OS_BIN) -nostdlib

@@ -30,23 +30,25 @@ stackTop:
 .global _start
 .type _start, @function
 
-
 _start:
 
   # assign current stack pointer location to stackTop
 	mov $stackTop, %esp
 
   # call the kernel main source
-	call main_kernel
+	call main
 
 	cli
 
 
-# put system in infinite loop
-hltLoop:
+# Put system in infinite loop -> N
+# Send to the kernel to system halts -> Y
+hlt:
+	call whenKernelHalts
+
+	cli
 
 	hlt
-	jmp hltLoop
 
 .size _start, . - _start
 
