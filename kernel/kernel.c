@@ -10,4 +10,5 @@ void main()
 void whenKernelHalts()
 {
     
+    reboot_cmdoska();
 }
